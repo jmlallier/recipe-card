@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const RecipeCardPreview = (props) => (
-	<div>
-		<h1>{props.title}</h1>
-	</div>
-);
+class RecipeCardPreview extends Component {
+	render() {
+		return (
+			<div className='RecipeCardPreview'>
+				<h3 className='recipeTitle'>{this.props.data.title}</h3>
+				<p className='recipeDescription'>{this.props.data.description}</p>
+				<p className="recipeYield">Yield: {this.props.data.yield}</p>
+			</div>
+		)
+	}
+};
 
 export default RecipeCardPreview;
