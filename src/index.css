@@ -1,8 +1,8 @@
 body {
 	margin: 0;
 	padding: 0;
-	font-family: sans-serif;
-	background: #fff;
+	font-family: 'Open Sans', sans-serif;
+	background: #f1f1f1;
 	color: #444;
 	font-size: 13px;
 	line-height: 1.5;
@@ -11,6 +11,15 @@ body {
 
 * {
 	box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Avenir', sans-serif;
 }
 
 .wrapper {
@@ -22,35 +31,64 @@ body {
 
 .FormContainer,
 .RecipeCardPreview {
-	width: 49%;
+	width: 48%;
 	float: left;
-	margin: 0 0.5%;
-	border: 1px solid #333;
+	margin: 0 1%;
 	text-align: left;
+	background-color: #fff;
+	box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.4);
+}
+
+.FormContainer {
+	background-color: #fff;
+}
+
+.editorBox {
 	padding: 20px 20px 15px;
-	background-color: #F6F6F6;
 	border: 1px solid #DEDEDE;
+	float: left;
+	width: 100%;
+}
+
+.editorBox+.editorBox {
+	border-top: none;
 }
 
 label {
-	font-size: .8em;
+	font-size: .75em;
 	width: 100%;
 	float: left;
-	margin: 14px 0 3px;
+	margin: 24px 0 6px;
 	text-transform: uppercase;
 	font-weight: bold;
+	color: rgb(74, 77, 79);
+	font-family: 'Trend Sans', sans-serif;
 }
 
 input[type=text],
+input[type=tel],
 textarea {
 	width: 100%;
 	float: left;
-	height: 30px;
-	padding-left: 12px;
+	height: 32px;
+	padding-left: 0;
+	border: none;
+	border-bottom: 2px solid #ced5d6;
+	box-shadow: none;
+	font-size: 1em;
+	color: #555555;
+	transition: border 0.3s ease;
+}
+
+input[type=text]:not(:read-only):focus,
+input[type=tel]:not(:read-only):focus,
+textarea:not(:read-only):focus {
+	outline: 0;
+	border-bottom: 2px solid #015f7b;
 }
 
 textarea {
-	padding: 12px;
+	padding: 12px 0;
 	height: 120px;
 }
 
@@ -87,10 +125,15 @@ textarea {
 	padding-right: 0;
 }
 
+.recipe-title {
+	letter-spacing: 1px;
+}
+
 .recipeTitle {
 	font-size: 1.8em;
 	line-height: 1.2;
 	margin-bottom: 8px;
+	text-transform: uppercase;
 }
 
 .recipeDescription {
@@ -99,4 +142,15 @@ textarea {
 
 .recipeYield {
 	color: #666666;
+}
+
+.recipeTimes .recipeTime {
+	display: inline;
+	margin-right: 22px;
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+.recipeContent p {
+	white-space: pre-line;
 }
