@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import BasicInput from '../components/BasicInput';
 import TextArea from '../components/TextArea';
+import NumericInput from '../components/NumericInput';
 import propTypes from 'prop-types';
 import uploadIcon from '../upload.png';
 
@@ -129,8 +130,7 @@ class FormContainer extends Component {
 							placeholder={'Additional Time Label'} />
 					</div>
 					<div className="half last">
-						<BasicInput
-							inputType={'tel'}
+						<NumericInput
 							title={'Prep Time (minutes)'}
 							name={'prepTime'}
 							controlFunc={this.formatTime}
@@ -138,8 +138,7 @@ class FormContainer extends Component {
 							placeholder={'Prep Time'}
 							maxLength={3}
 						/>
-						<BasicInput
-							inputType={'tel'}
+						<NumericInput
 							title={(data.cookTimeLabel || 'Cook Time') + ' (minutes)'}
 							name={'cookTime'}
 							controlFunc={this.formatTime}
@@ -147,8 +146,7 @@ class FormContainer extends Component {
 							placeholder={data.cookTimeLabel || 'Cook Time'}
 							maxLength={3}
 						/>
-						<BasicInput
-							inputType={'tel'}
+						<NumericInput
 							title={(data.additionalTimeLabel || 'Additional Time') + ' (minutes)'}
 							name={'additionalTime'}
 							controlFunc={this.formatTime}
