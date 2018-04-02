@@ -77,6 +77,7 @@ class FormContainer extends Component {
 		return (
 			<form className="FormContainer" onChange={this.props.changeHandler} onSubmit={(e) => e.preventDefault}>
 				<div className="editorBox">
+					<span className="editorBoxTitle">Edit recipe</span>
 					<BasicInput
 						inputType={'text'}
 						title={'Title'}

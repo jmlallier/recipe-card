@@ -4,10 +4,7 @@
   height: 100%;
   box-sizing: border-box;
   background: #ced5d6;
-  border-top: 5px solid #015f7b;
-  border-bottom: 5px solid #015f7b;
-  margin-top: 1px;
-  margin-bottom: 20px;
+  float: left;
 }
 
 .App-logo {

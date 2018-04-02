@@ -4,7 +4,7 @@ import RecipeCardPreview from '../components/RecipeCardPreview';
 
 
 const RecipeCardContainer = (props) => (
-	<div className='wrapper'>
+	<div className='wrapper recipeBackground'>
 		<FormContainer {...props} />
 		<RecipeCardPreview {...props} />
 	</div>

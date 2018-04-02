@@ -9,6 +9,7 @@ class App extends Component {
 		this.state = {
 			title: Data.title,
 			description: Data.description,
+			imgUrl: Data.imgUrl,
 			yield: Data.yield,
 			prepTime: Data.prepTime,
 			cookTimeLabel: Data.cookTimeLabel,
@@ -51,6 +52,7 @@ class App extends Component {
 		let recipe = {
 			title: this.state.title,
 			description: this.state.description,
+			imgUrl: this.state.imgUrl,
 			yield: this.state.yield,
 			prepTime: this.state.prepTime,
 			cookTimeLabel: this.state.cookTimeLabel,
@@ -64,9 +66,6 @@ class App extends Component {
 		};
 		return (
 			<div className="App">
-				<header className='App-header'>
-					<h1 className='App-title'>Edit Recipe</h1>
-				</header>
 				<RecipeCardContainer
 					data={recipe}
 					changeHandler={this.handleInputChange}
