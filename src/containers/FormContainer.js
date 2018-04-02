@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import Dropzone from 'react-dropzone';
 import BasicInput from '../components/BasicInput';
 import TextArea from '../components/TextArea';
 import propTypes from 'prop-types';
+import uploadIcon from '../upload.png';
 
 class FormContainer extends Component {
 
@@ -12,10 +14,11 @@ class FormContainer extends Component {
 			prepTime: this.props.data.prepTime,
 			cookTime: this.props.data.cookTime,
 			additionalTime: this.props.data.additionalTime,
-			totalTime: this.props.data.totalTime
+			totalTime: this.props.data.totalTime,
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
+		this.onImageDrop = this.onImageDrop.bind(this);
 		this.formatTime = this.formatTime.bind(this);
 	}
 
@@ -30,6 +33,14 @@ class FormContainer extends Component {
 				if (theEvent.preventDefault) theEvent.preventDefault();
 			}
 		}
+	}
+
+	onImageDrop(files) {
+		this.setState({
+			uploadedFile: files[0]
+		});
+
+		this.props.imageUploadHandler(files[0]);
 	}
 
 	formatTime(e) {
@@ -178,6 +189,20 @@ class FormContainer extends Component {
 						content={data.notes}
 						placeholder={'Notes'}
 					/>
+
+					<div className="image-upload-wrapper">
+						<label className="form-label">Drop an image or click to select a file to upload {this.props.data.imgUrl !== '' ? <button className='button removeImage' onClick={this.props.removeImageHandler}>Remove Image</button> : null}</label>
+						<Dropzone
+							multiple={false}
+							accept="image/*"
+							className='dropzone'
+							activeClassName='dropzone-active'
+							onDrop={this.onImageDrop.bind(this)}>
+							{this.props.data.imgUrl.length
+								? <img src={this.props.data.imgUrl} alt={this.props.data.title + ' image'} />
+								: <div className='imageUpload'><img src={uploadIcon} alt='Upload icon' /><p>Drop an image or click to select a file to upload</p></div>}
+						</Dropzone>
+					</div>
 				</div>
 			</form>
 		);

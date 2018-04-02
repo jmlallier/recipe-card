@@ -9,11 +9,13 @@ class RecipeCardPreview extends Component {
 					<span className="editorBoxTitle">Recipe preview</span>
 					<h3 className='recipeTitle'>{recipe.title}</h3>
 					<p className='recipeDescription'>{recipe.description}</p>
-					<div className="imageBox">
-						<img
-							src={recipe.imgUrl}
-							alt={recipe.title + ' image'} />
-					</div>
+					{recipe.imgUrl !== '' ?
+						<div className="imageBox">
+							<img
+								src={recipe.imgUrl}
+								alt={recipe.title + ' image'} />
+						</div>
+						: null}
 					<p className="recipeYield">Yield: {recipe.yield}</p>
 					<div className="recipeTimes">
 						<p className="recipeTime">Prep Time: {recipe.prepTime || 0}m</p>

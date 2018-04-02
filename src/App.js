@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import Data from './fake_db.json';
 import RecipeCardContainer from './containers/RecipeCardContainer';
+import request from 'superagent';
+
+const CLOUDINARY_UPLOAD_PRESET = 'ti5yedlx';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/jmlallier/image/upload';
 
 class App extends Component {
 	constructor(props) {
@@ -19,11 +23,14 @@ class App extends Component {
 			totalTime: this.calculateTotalTime(Data),
 			ingredients: Data.ingredients,
 			instructions: Data.instructions,
-			notes: Data.notes
+			notes: Data.notes,
+			uploadedFileCloudinaryUrl: ''
 		}
 
 		this.calculateTotalTime = this.calculateTotalTime.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleImageUpload = this.handleImageUpload.bind(this);
+		this.handleImageRemove = this.handleImageRemove.bind(this);
 	}
 
 	calculateTotalTime(data) {
@@ -48,6 +55,31 @@ class App extends Component {
 		this.setState({ [e.target.name]: e.target.value });
 	}
 
+	handleImageUpload(file) {
+		let upload = request.post(CLOUDINARY_UPLOAD_URL)
+			.field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+			.field('file', file);
+
+		upload.end((err, response) => {
+			if (err) {
+				console.error(err);
+			}
+
+			if (response.body.secure_url !== '') {
+				this.setState({
+					imgUrl: response.body.secure_url
+				});
+			}
+		});
+	}
+
+	handleImageRemove(e) {
+		e.preventDefault();
+		this.setState({
+			imgUrl: ''
+		});
+	}
+
 	render() {
 		let recipe = {
 			title: this.state.title,
@@ -69,6 +101,8 @@ class App extends Component {
 				<RecipeCardContainer
 					data={recipe}
 					changeHandler={this.handleInputChange}
+					imageUploadHandler={this.handleImageUpload}
+					removeImageHandler={this.handleImageRemove}
 				/>
 			</div>
 		);
