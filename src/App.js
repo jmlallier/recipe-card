@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Data from './fake_db.json';
-import RecipeCardContainer from './containers/RecipeCardContainer';
+import FormContainer from './components/FormContainer';
+import RecipeCardPreview from './components/RecipeCardPreview';
 import request from 'superagent';
 
 const CLOUDINARY_UPLOAD_PRESET = 'ti5yedlx';
@@ -98,12 +99,16 @@ class App extends Component {
 		};
 		return (
 			<div className="App">
-				<RecipeCardContainer
-					data={recipe}
-					changeHandler={this.handleInputChange}
-					imageUploadHandler={this.handleImageUpload}
-					removeImageHandler={this.handleImageRemove}
-				/>
+				<div className='wrapper recipeBackground'>
+					<FormContainer data={recipe}
+						changeHandler={this.handleInputChange}
+						imageUploadHandler={this.handleImageUpload}
+						removeImageHandler={this.handleImageRemove} />
+					<RecipeCardPreview data={recipe}
+						changeHandler={this.handleInputChange}
+						imageUploadHandler={this.handleImageUpload}
+						removeImageHandler={this.handleImageRemove} />
+				</div>
 			</div>
 		);
 	}
