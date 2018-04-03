@@ -19,8 +19,10 @@ class RecipeCardPreview extends Component {
 					<p className="recipeYield">Yield: {recipe.yield}</p>
 					<div className="recipeTimes">
 						<p className="recipeTime">Prep Time: {recipe.prepTime || 0}m</p>
-						<p className="recipeTime">Cook Time: {recipe.cookTime || 0}m</p>
-						<p className="recipeTime">Additional Time: {recipe.additionalTime || 0}m</p>
+						<p className="recipeTime">{recipe.cookTimeLabel}: {recipe.cookTime || 0}m</p>
+						{recipe.additionalTime ?
+							<p className="recipeTime">{recipe.additionalTimeLabel}: {recipe.additionalTime || 0}m</p>
+							: null}
 						<p className="recipeTime">Total Time: {recipe.totalTime}</p>
 					</div>
 					<hr />
